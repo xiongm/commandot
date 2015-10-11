@@ -52,28 +52,6 @@ function close_add_commandot_form()
 
 // initialize dynamic components after initial ajax call
 function init() {
-    // initialize form validator using jquery validate
-    var validate =   $("#add_commandot_form").validate({
-      rules: {
-      commandot_name: {
-         required: true,
-	 // can only use alphabetic, numeric
-	 // except for '-','_','.'. Can only
-	 // start with alphabetic or numeric
-         pattern:"^[a-zA-Z0-9][a-zA-Z0-9-_. ]*$"
-       }            
-      },
-      messages: {
-       commandot_name: {
-         required:" please specify a name",
-         pattern:" Invalid format"
-       }
-      },
-      submitHandler: function (form) { 
-       return false;
-      }         
-    });
-
     // hovering each commandot item will 
     // trigger display of actions,e.g. trash
     $("#commandotlist .item").hover(function () {
@@ -84,47 +62,25 @@ function init() {
     
     // set up add commandot actions
     $("#add-commandot").click(function () {
-	validate.resetForm();
-	$("#add_commandot_form").get(0).reset();
-	show_add_commandot_form();
-	$("#add_commandot_form").find("#commandot_name").focus();
-
-        $("#cancel_btn").click(function () {
-	  close_add_commandot_form();
-	  return false;
-        });
-
-        $("#save_btn").click(function () {
-	    if (!$("#add_commandot_form").valid())
-	    {
-	      return;
-	    }
-            var result = {
-              name: $("#commandot_name").val().replace(/ /g, "_")
-            };
-
-            var data = {
-                dir: "./",
-                content: JSON.stringify(result)
-            };
-            $.ajax({
-                type: "post",
-                url: "./add.php",
-                dataType: "json",
-                data: data,
-                success: function (json) {
-                    if (json.return ==0) {
-		        window.location.href = './' + result.name;
-                    }
-                },
-                complete: function () {
-		  close_add_commandot_form();
-                },
-                error: function (xhr, status, error) {
-                    console.log("fail to set configs:" + "[error:" + error + "][xhr:" + xhr.responseText + "][status:" + status + "]");
-                }
-            });
-        });
+      var data = {
+        dir: "./"
+      };
+      $.ajax({
+        type: "post",
+        url: "./add.php",
+        dataType: "json",
+        data: data,
+        success: function (json) {
+          if (json.return ==0) {
+            window.location.href = './' + json.name;
+          }
+        },
+        complete: function () {
+        },
+        error: function (xhr, status, error) {
+          console.log("fail to set configs:" + "[error:" + error + "][xhr:" + xhr.responseText + "][status:" + status + "]");
+        }
+      });
         return false;
     });
 
