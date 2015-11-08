@@ -1,0 +1,587 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:600italic, 700italic, 400, 600, 700);
+
+/*Basic reset*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background:#F2F2F2;
+    margin:0;
+    padding:0;
+    font-family:"Helvetica", "Arial", "FreeSans", "Verdana", "Tahoma", "Lucida Sans", "Lucida Sans Unicode", "Luxi Sans", sans-serif;
+}
+
+
+.overlay {
+    background: rgba(0,0,0,0.5);
+    position:fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    display:none;
+}
+
+.ajax-loading {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .5 ) 
+                url('../img/loader.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .ajax-loading {
+    display: block;
+}
+
+.CodeMirror pre {
+  font-size: 22px;
+}
+
+#home {
+    text-decoration:none;
+    color:#FFF;
+}
+
+#header {
+    background:#4679BD;
+    color:#eee;
+    overflow:hidden;
+    height:50px;
+}
+
+#branding {
+    float:left;
+    width:250px;
+    height:100%;
+    background:rgba(255, 255, 255, 0.1);
+    margin:0px 0px;
+}
+
+#branding h1 {
+    padding:8px 16px 8px 16px;
+    font-size:22px;
+    font-weight:600;
+}
+
+#branding h2 {
+    color:inherit;
+    padding:2px 2px 2px 8px;
+    font-size:12px;
+    font-weight:600;
+}
+
+#content-wrapper {
+    margin:10px 10px 0px 260px;
+//    border: 1px solid rgb(192, 192, 192);
+    //box-shadow: 0px 1px 2px rgb(228, 228, 228) inset;
+}
+
+#commandotlist-wrapper {
+    margin:10px 10px 0px 250px;
+}
+
+#commandotlist-wrapper #commandotlist {
+    padding: 5px 5px 5px 30px;
+}
+
+#commandotlist-wrapper #commandotlist .item {
+    position:relative;
+    padding: 0px 0px 10px 0px;
+}
+
+#commandotlist-wrapper #commandotlist .item h3 a {
+    font-weight:600;
+    color:#4072B4;
+}
+
+#commandotlist-wrapper #commandotlist .item h3 a:hover {
+    text-shadow: 2px 2px 3px rgba(150, 150, 150, 0.75);
+}
+
+
+#commandotlist-wrapper #commandotlist .actions {
+    position: absolute;
+    top: 2px;
+    opacity: 0;
+    width: 20px;
+    left: -20px;
+}
+
+#commandotlist-wrapper #commandotlist .actions a {
+    text-decoration: none;
+    color: #ADB0BA;
+}
+
+#commandotlist-wrapper ul {
+    list-style:outside none none;
+}
+
+#commandotlist .info {
+    padding: 2px 0 2px;
+    color: #767B8C;
+    font-weight: 400;
+}
+
+#content-input {
+    padding: 0px 0px 20px 0px;
+    display:none;
+}
+
+#content-input fieldset {
+    padding: 0.5em;
+}
+
+#content-input label {
+    width:100px;
+    float:left;
+    margin-left: 1px;
+    padding-right:4px;
+}
+
+#content-input legend {
+    font-weight:500;
+    padding:2px;
+}
+
+#content-input fieldset p {
+    padding:4px;
+}
+
+#content-input fieldset p input{
+    padding:2px;
+}
+
+#content-input .button {
+    background:#4679BD;
+    border-style:none;
+    color:white;
+    height:30px;
+    width:80px;
+    cursor:pointer;
+}
+
+
+thead {
+    color:white;
+    text-align:center;
+    vertical-align:middle;
+    overflow:hidden;
+    padding:0px 5px 0px 5px;
+    height:30px;
+    background:#1B3F65;
+}
+
+tbody {
+    color:black;
+    background:white;
+}
+
+table, th, td {
+    text-align:center;
+    border-spacing:1;
+    padding:5px 9px;
+}
+
+tr {
+    font-size:12.5pt;
+    font-weight:600;
+}
+
+tbody tr:nth-child(odd) {
+    background:rgba(117, 176, 240, 0.3);
+}
+
+
+.footer {
+    position:fixed;
+    bottom:0;
+    text-align:left;
+    font-size:16px;
+    height:25px;
+}
+
+.tablewrapper {
+    width:900px;
+    margin:15px auto;
+}
+
+/* Content --------------------------------- */
+ .output {
+    border-top: 1px solid #D9D9D9;
+    border-bottom: 1px solid #D9D9D9;
+    padding: 7px 10px;
+    background-color: #F2F2F2;
+    overflow-y: auto;
+    font-size:16px;
+}
+
+#command_return h2 {
+    margin: 0;
+    border-bottom: 0 none #FFFFFF;
+    padding: 5px 5px;
+    color: #FFFFFF;
+    line-height: 120%;
+}
+
+h2.success {
+    background-color: #51A851;
+    border-top-color: #2E892E;
+}
+
+h2.failure {
+    border-top-color: #B72E2E;
+    background-color: #D45151;
+}
+
+.form-container {
+    margin: auto;
+    position: fixed;
+    width:550px;
+    top: 60px;
+    left: 50px;
+    right: 50px;
+    background-color: white;
+    z-index:5;
+    box-shadow: 5px 5px 5px black;
+    display:none
+}
+
+.form-container h2 {
+    color:#EEE;
+    font-size:20px;
+    font-weight:bold;
+    margin:0px 0px;
+    padding:10px 10px 10px 10px;
+    border-top-color: #EEE;
+    background-color: #4679BD;
+}
+
+dl {
+    border: 0px double #ccc;
+    padding: 0.5em;
+}
+
+dt {
+    float: left;
+    clear: left;
+    width: 100px;
+    text-align: right;
+    font-weight: bold;
+    color: green;
+}
+
+dt:after {
+    content:":";
+}
+
+dd {
+    margin: 0 0 0 110px;
+    padding: 0 0 0.5em 0;
+}
+
+dd input {
+  padding:2px;
+}
+
+.dialogbutton {
+    float: right;
+    margin: .5em .5em .5em;
+    cursor: pointer;
+    padding: .2em .2em .2em .2em;
+    width: auto;
+    overflow: visible;
+}
+
+hr {
+    margin: 5px 5px;
+}
+
+
+#vertical-menu {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 0px;
+    margin: 0px;
+    font-size: 13px;
+    width: 250px;
+    position: absolute;
+    top: 50px;
+    left: 0px;
+    bottom: 0px;
+    opacity:1;
+    color: #444;
+    /*box-shadow: 
+		0 5px 15px 1px rgba(0, 0, 0, 0.6), 
+		0 0 200px 1px rgba(255, 255, 255, 0.5);*/
+}
+
+#vertical-menu h3 {
+    line-height: 34px;
+    padding: 0 10px;
+    cursor: pointer;
+    font-weight:normal;
+    font-size:14px;
+}
+
+#vertical-menu h3:not(.toggler):hover {
+    text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1), 0px 18px 23px rgba(0, 0, 0, 0.1);
+}
+
+/*iconfont styles*/
+#vertical-menu h3 span {
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+/*list items*/
+#vertical-menu li {
+  list-style-type: none;
+}
+
+
+/*Lets hide the non active LIs by default*/
+#vertical-menu ul .item {
+    display: none;
+}
+
+#vertical-menu li.active .item {
+    display: block;
+}
+
+#vertical-menu .toggler {
+    color: #333;
+    height: 36px;
+    line-height: 36px;
+    padding: 0px 10px;
+    font-size: 16px;
+    font-weight: bold;
+    position: relative;
+}
+
+#vertical-menu .underline {
+    border-bottom: 1px solid #DFDFDF;
+}
+
+#vertical-menu .item {
+    padding: 2px 8px 0px;
+    margin-left: 5px;
+}
+
+#vertical-menu label {
+    font-size: 14px;
+}
+
+#vertical-menu p {
+    margin: 0px 0px 7px;
+    line-height: 160%;
+}
+
+#vertical-menu textarea {
+    height: 60px;
+}
+
+#vertical-menu input[type="text"], #vertical-menu input[type="password"], #vertical-menu textarea {
+    width: 215px;
+    padding: 7px 5px;
+    color: #626262;
+    font-family:"Helvetica", "Arial", "FreeSans", "Verdana", "Tahoma", "Lucida Sans", "Lucida Sans Unicode", "Luxi Sans", sans-serif;
+    font-size: 1em;
+    background: #F6F6F6 none repeat scroll 0% 0%;
+    border: 1px solid #C0C0C0;
+    box-shadow: 0px 1px 2px #E4E4E4 inset;
+    border-radius: 2px;
+    outline: medium none;
+}
+
+#vertical-menu select {
+    width: 100%;
+    margin: 3px 0px;
+}
+
+#vertical-menu #argument {
+    width:185px;
+}
+
+#vertical-menu #arguments_list li {
+    padding: 5px 0px 3px;
+    position: relative;
+}
+
+#vertical-menu #arguments_list li .remove {
+    font-family:"FontAwesome";
+    display: block;
+    width: 10px;
+    height: 10px;
+    content:'\f014';
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    text-decoration:none;
+}
+
+#vertical-menu em {
+    color: #AEAEAE;
+    font-style: normal;
+    font-size: 0.9em;
+    position: relative;
+    top: 10px;
+    background: #F1F1F1 none repeat scroll 0% 0%;
+    height: 16px;
+    padding: 0px 4px;
+    line-height: 16px;
+    border-radius: 2px;
+    right: 10px;
+    float:right;
+}
+
+#vertical-menu #add_argument {
+    border: 1px solid #EDEDED;
+    float: right;
+    height: 28px;
+    width: 28px;
+    padding: 0px;
+    line-height: 31px;
+    text-align: center;
+    outline: medium none;
+    color: #333;
+}
+
+/* tabs */
+ .tabs-menu {
+    height: 30px;
+    clear: both;
+}
+
+.tabs-menu li {
+    height: 30px;
+    line-height: 30px;
+    float: left;
+    background-color: #aaa;
+    border-top: 1px solid #d4d4d1;
+    border-right: 1px solid #d4d4d1;
+    border-left: 1px solid #d4d4d1;
+}
+
+#tabs-container ul {
+    list-style:none;
+}
+
+.tabs-menu li.current {
+    position: relative;
+    background-color: #fff;
+    z-index: 5;
+}
+
+.tabs-menu li a {
+    padding: 10px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.tabs-menu li:not(.current) a:hover {
+    text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1), 0px 18px 23px rgba(0, 0, 0, 0.1);
+}
+
+.tabs-menu .current a {
+    color: #2e7da3;
+    font-weight:bold;
+}
+
+.tab {
+    border: 1px solid #d4d4d1;
+    background-color: #fff;
+    margin-bottom: 20px;
+    width: auto;
+}
+
+.tab-content {
+    padding: 20px;
+    display: none;
+}
+
+#tabs-container .active {
+    display: block;
+}
+
+#actions {
+    font-size: 15px;
+}
+
+#actions ul.actionCont {
+    float: left;
+}
+
+#actions li.actionItem {
+    float: left;
+    position: relative;
+    margin-right: 1px;
+}
+
+#actions li.actionItem a.aiButton {
+    display: block;
+    outline: none;
+    text-decoration: none;
+    color: #fff;
+    background: #4072b4;
+    padding: 0 8px;
+    height:48px
+}
+
+#actions li.actionItem a:hover {
+    text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1), 0px 18px 23px rgba(0, 0, 0, 0.1);
+}
+
+#actions li.actionItem a.aiButton span {
+    line-height: 45px;
+    font-size: .95em;
+}
+
+#actions ul {
+    list-style:none;
+}
+
+.icon-ok, .icon-plus, .icon-delete, .icon-new-file {
+    font-family:"FontAwesome";
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+}
+
+.icon-plus {
+    font-size:16px;
+}
+
+.icon-delete::before {
+    content:'\f014';
+}
+
+.icon-ok::before {
+    content:"\f00c";
+}
+
+.icon-plus::before {
+    content:"\f067";
+}
+
+.icon-new-file::before {
+    content:"\f016"
+}
+

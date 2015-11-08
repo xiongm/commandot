@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Edit Commandot </title>
+  <link rel="stylesheet" href="../css/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../js/codemirror/lib/codemirror.css">
+  <link rel="stylesheet" href="../js/codemirror/theme/midnight.css">
+  <link rel="stylesheet" href="../css/style.css" />
+  <script src="../js/codemirror/lib/codemirror.js"></script>
+  <script src="../js/codemirror/addon/edit/matchbrackets.js"></script>
+  <script src="../js/codemirror/mode/javascript/javascript.js"></script>
+  <script src="../js/codemirror/mode/shell/shell.js"></script>
+  <script src="../js/codemirror/addon/selection/active-line.js"></script>
+  <script src="../js/jquery/jquery-2.1.4.min.js"></script>
+</head>
+
+<script src="./user.js"></script>
+<script src="../_template/load.js"></script>
+
+<body>
+<!-- Header -->
+<div id="header">
+  <div id="branding">
+    <h1 id="page_title"><a id="home" href="../">Commandot</a></h1>
+  </div>
+  <div id="actions">
+    <ul class="actionCont collapsed">
+      <li class="actionItem"> <a class="aiButton" id="update" title="Apply all changes" href="#update"><span class="icon-ok"></span>
+	Update</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<!-- Header -->
+
+<!-- Main Content -->
+<div id="content-wrapper">
+  <div id="tabs-container">
+    <ul class="tabs-menu">
+      <li class="current"><a href="#content">Main</a></li>
+      <li><a href="#tab-script">Command</a></li>
+      <li><a href="#tab-js">Javascript</a></li>
+    </ul>
+    <div class="tab">
+      <div id="content" class="tab-content active">
+	<div id="content-input">
+	  <fieldset>
+	    <legend>Command Arguments</legend>
+	    <div id="content-input-arguments"></div>
+	    <p>
+	    <input type="submit" name="submit" class="button" id="arguments_submit_btn" value="GO" />
+	    </p>
+	  </fieldset>
+	</div>
+	<div id="content-output"></div>
+      </div>
+      <div id="tab-script" class="tab-content">
+	<textarea rows="10" cols="50" id="command" name="command"></textarea>
+      </div>
+      <div id="tab-js" class="tab-content">
+	<textarea rows="10" cols="50" id="user_defined_js" name="user_defined_js"></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Main Content -->
+
+<!-- vertical menu -->
+<div id="vertical-menu">
+  <ul>
+    <li class="active">
+    <h3 class="toggler">General Options</h3>
+    <div class="underline">
+      <div class="item">
+	<p>
+	<label>
+	  <input id="title" name="title" maxlength="255" value="" placeholder="Name your commandot" type="text">
+	</label>
+	</p>
+	<p>
+	<label>
+	  <textarea id="summary" rows="10" cols="40" name="description" placeholder="Description"></textarea>
+	</label>
+	</p>
+	<p>
+	<label>Auto Refresh
+	  <select id="interval" name="doctype">
+	    <option value="15">Every 15 Seconds</option>
+	    <option value="30">Every 30 Seconds</option>
+	    <option value="60">Every Minitue</option>
+	    <option value="0">Do Not Refresh</option>
+	  </select>
+	</label>
+	</p>
+      </div>
+    </div>
+    </li>
+    <li>
+    <h3>Arguments<em id="arguments_list_number">0</em></h3>
+    <div class="underline">
+      <div class="item">
+	<p>
+	<label>
+	  <input id="argument" name="argument" maxlength="255" value="" placeholder="Define an argument name" type="text"> <a id="add_argument" class="submit" title="Add argument" href="#" style="text-decoration:none"><span class="icon-plus"></span></a>
+	</label>
+	</p>
+	<ul id="arguments_list"></ul>
+      </div>
+    </div>
+    </li>
+    <li>
+    <h3>About</h3>
+    <div class="underline">
+      <div class="item">
+	<p>
+	<label>Commandot Version 0.1</label>
+	</p>
+      </div>
+    </div>
+    </li>
+  </ul>
+</div>
+<!-- Vertical Menu -->
+
+<div class="ajax-loading"></div>
+
+</body>
+</html>
