@@ -30,7 +30,7 @@ function handle_get_commandots (json)
   $("#commandotlist-wrapper").html('<ul id="commandotlist"></ul>');
   $.each(json, function (key, value) {
       var config = $.parseJSON(value);                
-      var html = '<li class="item"><h3><a href="./' + key + '">' + key + '</a></h3>';
+      var html = '<li class="item"><h3><a href="./' + key + '">' + config.title + '</a></h3>';
       html +='<p class="info">' + config.summary + '</p>';
       html += '<ul class="actions"><li class="delete"><a class="icon-delete" href="#" title="Remove this commandot"></a></li></ul></li>';
       $("#commandotlist").append(html);
@@ -88,7 +88,7 @@ function init() {
     $("#commandotlist li.delete a").click(function () {
         if (confirm(confirm_commandot_delete_notice) == true) {
             var item = $(this).closest(".item");
-            var name = item.find('h3 a').text();
+            var name = item.find('h3 a').attr("href"); 
             $.ajax({
                 type: "post",
                 url: "./delete_commandot.php",
