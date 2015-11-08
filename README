@@ -1,1 +1,4 @@
-1. sudo chown -R www-data: ./commandot
+1. git clone https://github.com/xiongm/commandot.git
+2. cd commandot
+3. sudo chown -R www-data: ./commandot
+4. sudo ln -sf ./commandot/ /var/www/html/commandot
